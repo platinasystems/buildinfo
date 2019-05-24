@@ -6,3 +6,4 @@
 *.swp
 *.test
 /_obj/
+/example-buildinfo/go.sum

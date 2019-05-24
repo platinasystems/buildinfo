@@ -1,10 +1,11 @@
-This package provides a [WriterTo] wrapper to [runtime/debug.BuildInfo].
+This package provides a [runtime/debug.BuildInfo] [Formatter].
 Usage,
 
 ```golang
-	bi, err := buildinfo.New()
-	if err == nil {
-		_, err = bi.WriteTo(os.Stdout)
+	if bi := buildinfo.New(); bi.Version() != buildinfo.Unavailable {
+		fmt.Println(bi)
+	} else {
+		fmt.Println(buildinfo.Unavailable)
 	}
 ```
 
@@ -14,5 +15,5 @@ Usage,
 Use of this source code is governed by this BSD-style [LICENSE].*
 
 [LICENSE]: LICENSE
-[WriterTo]: https://godoc.org/io#WriterTo
 [runtime/debug.BuildInfo]: https://godoc.org/runtime/debug#BuildInfo
+[Formatter]: https://golang.org/pkg/fmt/#Formatter

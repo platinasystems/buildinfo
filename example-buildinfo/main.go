@@ -6,18 +6,14 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/platinasystems/buildinfo"
 )
 
 func main() {
-	bi, err := buildinfo.New()
-	if err == nil {
-		_, err = bi.WriteTo(os.Stdout)
-	}
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+	if bi := buildinfo.New(); bi.Version() != buildinfo.Unavailable {
+		fmt.Println(bi)
+	} else {
+		fmt.Println(buildinfo.Unavailable)
 	}
 }

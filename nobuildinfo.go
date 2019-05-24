@@ -6,18 +6,18 @@
 
 package buildinfo
 
-import (
-	"fmt"
-	"io"
-)
+import "fmt"
 
 type BuildInfo struct{}
 
-func New() (BuildInfo, error) {
-	return BuildInfo{}, nil
+func New() BuildInfo {
+	return BuildInfo{}
 }
 
-func (bi BuildInfo) WriteTo(w io.Writer) (int64, error) {
-	n, err := fmt.Fprintln(w, "unavailable")
-	return int64(n), err
+func (bi BuildInfo) Format(f fmt.State, c rune) {
+	f.Write(unavailable)
+}
+
+func (bi BuildInfo) Version() string {
+	return Unavailable
 }
